@@ -6,4 +6,4 @@ spring:
     name: ts-basic-service
 
 swagger:
-  controllerPackage: fdse.microservice.controller
+  controllerPackage: fdse.fdse.microservice.controller

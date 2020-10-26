@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>fdse.microservice</groupId>
+	<groupId>fdse.fdse.microservice</groupId>
 	<artifactId>ts-station-service</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
@@ -33,6 +33,10 @@
 			<groupId>org.services</groupId>
 			<artifactId>ts-common</artifactId>
 			<version>0.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 

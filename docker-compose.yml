@@ -32,6 +32,15 @@ services:
     networks:
       - my-network
 
+  eureka-demo:
+    build: ts-eureka-registry
+    restart: always
+    ports:
+      - 8030:8030
+    networks:
+      - my-network
+
+
   ts-ui-dashboard:
     build: ts-ui-dashboard
     image: codewisdom/ts-ui-dashboard
@@ -162,6 +171,14 @@ services:
     restart: always
     ports:
       - 12345:12345
+    networks:
+      - my-network
+
+  ts-station2-service:
+    build: ts-station2-service
+    restart: always
+    ports:
+      - 16345:16345
     networks:
       - my-network
 

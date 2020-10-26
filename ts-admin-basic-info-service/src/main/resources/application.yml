@@ -6,4 +6,4 @@ spring:
     name: ts-admin-basic-info-service
 
 swagger:
-  controllerPackage: adminbasic.microservice
+  controllerPackage: adminbasic.fdse.microservice

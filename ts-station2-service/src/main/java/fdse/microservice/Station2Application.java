@@ -14,9 +14,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @IntegrationComponentScan
 @EnableSwagger2
 @EnableEurekaClient
-public class StationApplication {
+public class Station2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StationApplication.class, args);
+		SpringApplication.run(Station2Application.class, args);
 	}
 }

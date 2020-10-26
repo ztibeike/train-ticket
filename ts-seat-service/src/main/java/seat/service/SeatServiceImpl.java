@@ -43,7 +43,7 @@ public class SeatServiceImpl implements SeatService {
         if (trainNumber.startsWith("G") || trainNumber.startsWith("D")) {
             SeatServiceImpl.LOGGER.info("[SeatService distributeSeat] TrainNumber start with G|D");
 
-            //Call the microservice to query all the station information for the train
+            //Call the fdse.microservice to query all the station information for the train
             HttpEntity requestEntity = new HttpEntity(headers);
             re = restTemplate.exchange(
                     "http://ts-travel-service:12346/api/v1/travelservice/routes/" + trainNumber,
@@ -54,7 +54,7 @@ public class SeatServiceImpl implements SeatService {
             routeResult = re.getBody();
             SeatServiceImpl.LOGGER.info("[SeatService distributeSeat] The result of getRouteResult is {}", routeResult.getMsg());
 
-            //Call the microservice to query for residual Ticket information: the set of the Ticket sold for the specified seat type
+            //Call the fdse.microservice to query for residual Ticket information: the set of the Ticket sold for the specified seat type
             requestEntity = new HttpEntity(seatRequest, headers);
             re3 = restTemplate.exchange(
                     "http://ts-order-service:12031/api/v1/orderservice/order/tickets",
@@ -65,7 +65,7 @@ public class SeatServiceImpl implements SeatService {
             SeatServiceImpl.LOGGER.info("Left ticket info is : {}", re3.getBody().toString());
             leftTicketInfo = re3.getBody().getData();
 
-            //Calls the microservice to query the total number of seats specified for that vehicle
+            //Calls the fdse.microservice to query the total number of seats specified for that vehicle
             requestEntity = new HttpEntity(headers);
             re2 = restTemplate.exchange(
                     "http://ts-travel-service:12346/api/v1/travelservice/train_types/" + seatRequest.getTrainNumber(),
@@ -90,7 +90,7 @@ public class SeatServiceImpl implements SeatService {
             routeResult = re.getBody();
             SeatServiceImpl.LOGGER.info("[SeatService distributeSeat] The result of getRouteResult is {}", routeResult.toString());
 
-            //Call the microservice to query for residual Ticket information: the set of the Ticket sold for the specified seat type
+            //Call the fdse.microservice to query for residual Ticket information: the set of the Ticket sold for the specified seat type
             requestEntity = new HttpEntity(seatRequest, headers);
             re3 = restTemplate.exchange(
                     "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/tickets",
@@ -101,7 +101,7 @@ public class SeatServiceImpl implements SeatService {
             SeatServiceImpl.LOGGER.info("Left ticket info is : {}", re3.getBody().toString());
             leftTicketInfo = re3.getBody().getData();
 
-            //Calls the microservice to query the total number of seats specified for that vehicle
+            //Calls the fdse.microservice to query the total number of seats specified for that vehicle
             requestEntity = new HttpEntity(headers);
             re2 = restTemplate.exchange(
                     "http://ts-travel2-service:16346/api/v1/travel2service/train_types/" + seatRequest.getTrainNumber(),
@@ -207,7 +207,7 @@ public class SeatServiceImpl implements SeatService {
             SeatServiceImpl.LOGGER.info("Get Order tickets result is : {}", re3);
             leftTicketInfo = re3.getBody().getData();
 
-            //Calls the microservice to query the total number of seats specified for that vehicle
+            //Calls the fdse.microservice to query the total number of seats specified for that vehicle
             requestEntity = new HttpEntity(headers);
             re2 = restTemplate.exchange(
                     "http://ts-travel-service:12346/api/v1/travelservice/train_types/" + seatRequest.getTrainNumber(),
@@ -245,7 +245,7 @@ public class SeatServiceImpl implements SeatService {
             leftTicketInfo = re3.getBody().getData();
 
 
-            //Calls the microservice to query the total number of seats specified for that vehicle
+            //Calls the fdse.microservice to query the total number of seats specified for that vehicle
             requestEntity = new HttpEntity(headers);
             re2 = restTemplate.exchange(
                     "http://ts-travel2-service:16346/api/v1/travel2service/train_types/" + seatRequest.getTrainNumber(),

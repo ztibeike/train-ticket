@@ -1,4 +1,4 @@
-This project is ticket seller application in microservice architecture, including 40+ microservices
+This project is ticket seller application in fdse.microservice architecture, including 40+ microservices
 =========================
 
 - java，spring boot，spring cloud

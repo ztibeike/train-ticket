@@ -1,7 +1,7 @@
 
 # Train Ticket：A Benchmark Microservice System
 
-The project is a train ticket booking system based on microservice architecture which contains 41 microservices. The programming languages and frameworks it used are as below.
+The project is a train ticket booking system based on fdse.microservice architecture which contains 41 microservices. The programming languages and frameworks it used are as below.
 - Java - Spring Boot, Spring Cloud
 - Node.js - Express
 - Python - Django
@@ -94,7 +94,7 @@ In order to know how to use the application, you can refer to [the User Guide](h
 Xiang Zhou, Xin Peng, Tao Xie, Jun Sun, Chao Ji, Dewei Liu, Qilin Xiang, and Chuan He. <br/>
 **Latent Error Prediction and Fault Localization for Microservice Applications by Learning from System Trace Logs.**<br/>
 In Proceedings of the 27th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering ([ESEC/FSE 2019](https://esec-fse19.ut.ee/)) , Tallinn, Estonia, August 2019. <br/>
-Download: [[PDF](https://cspengxin.github.io/publications/fse19-zhou-microservice.pdf)] [[BibTeX](https://dblp.uni-trier.de/rec/bibtex/conf/sigsoft/Zhou0X0JLXH19)] 
+Download: [[PDF](https://cspengxin.github.io/publications/fse19-zhou-fdse.microservice.pdf)] [[BibTeX](https://dblp.uni-trier.de/rec/bibtex/conf/sigsoft/Zhou0X0JLXH19)] 
 
 <br/>
 

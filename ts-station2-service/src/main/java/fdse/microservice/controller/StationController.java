@@ -1,7 +1,7 @@
 package fdse.microservice.controller;
 
 import edu.fudan.common.util.Response;
-import fdse.microservice.entity.*;
+import fdse.microservice.entity.Station;
 import fdse.microservice.service.StationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Test {
-    private static String SRC_DIR = "D:\\workspace\\microservice\\faults\\F1\\step2_fault_origin_traces";
+    private static String SRC_DIR = "D:\\workspace\\fdse.microservice\\faults\\F1\\step2_fault_origin_traces";
 
     public static void  main(String[] args){
         String mircroServiceName = "{traceId=1b114102c6306ef8, spanId=1b114102c6306ef8, hostName=ts-order-service, destName=null, host=ts-order-service, clock={\"ts-order-service\":4,\"ts-sso-service\":2}, dest=null, event=ts-order-service.OrderController.queryOrders, type=ss, parentId=, timestamp=1516255241135800, }";

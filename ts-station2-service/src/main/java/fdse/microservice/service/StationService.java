@@ -1,7 +1,7 @@
 package fdse.microservice.service;
 
 import edu.fudan.common.util.Response;
-import fdse.microservice.entity.*;
+import fdse.microservice.entity.Station;
 import org.springframework.http.HttpHeaders;
 
 import java.util.List;

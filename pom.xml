@@ -53,6 +53,8 @@
         <module>ts-common</module>
         <module>ts-auth-service</module>
 		<module>ts-user-service</module>
+		<module>ts-eureka-registry</module>
+		<module>ts-station2-service</module>
 		<!--<module>ts-ticket-advance-service</module>-->
 		<!--<module>1_services_analysis_mvn</module>-->
     </modules>
@@ -114,6 +116,18 @@
 		</dependency>
 
     </dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Edgware.SR6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<!--<repositories>-->
 		<!--<repository>-->
