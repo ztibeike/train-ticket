@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ts-station-service
+  data:
+    mongodb:
+      host: ts-station-mongo
+#      username: user
+#      password: ${MONGODB_PASSWORD}
+      database: ts
+      port: 27017
+
+# HTTP Server
+server:
+  port: 12345  # HTTP (Tomcat) port
+
+swagger:
+  controllerPackage: fdse.microservice
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+info:
+  leaf: 1
+  port: ${server.port}
