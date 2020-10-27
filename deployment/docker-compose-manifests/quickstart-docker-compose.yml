@@ -25,6 +25,62 @@ services:
 #    networks:
 #      - my-network
 
+  eureka-demo:
+    image: ts-eureka-registry
+    restart: always
+    ports:
+      - 8030:8030
+    networks:
+      - my-network
+
+  ts-station2-service:
+    image: ts-station2-service
+    restart: always
+    ports:
+      - 16345:16345
+    networks:
+      - my-network
+
+  ts-zuul-station:
+    image: ts-zuul-station
+    restart: always
+    ports:
+      - 30001:30001
+    networks:
+      - my-network
+
+  ts-train2-service:
+    image: ts-train2-service
+    restart: always
+    ports:
+      - 16567:16567
+    networks:
+      - my-network
+
+  ts-zuul-train:
+    image: ts-zuul-train
+    restart: always
+    ports:
+      - 30002:30002
+    networks:
+      - my-network
+
+  ts-price2-service:
+    image: ts-price2-service
+    restart: always
+    ports:
+      - 18579:18579
+    networks:
+      - my-network
+
+  ts-zuul-price:
+    image: ts-zuul-price
+    restart: always
+    ports:
+      - 30003:30003
+    networks:
+      - my-network
+
   redis:
     image: redis
     ports:
