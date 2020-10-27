@@ -46,7 +46,7 @@ ts-price-service
 
 ### 完成效果
 
-![](/home/zt123/IdeaProjects/train-ticket/image/2-2.png)
+![](./image/2-2.png)
 
 ### 添加过程
 
