@@ -26,6 +26,8 @@ eureka版本：1.4.7.RELEASE
 
 ## 添加网关Zuul
 
+zuul版本：2.2.5.RELEASE，与整个项目SpringCloud版本不同，但没影响
+
 ### 所选服务
 
 ![2-1-1](./image/2-1-1.png)
