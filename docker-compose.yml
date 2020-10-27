@@ -27,6 +27,7 @@ services:
 
   eureka-demo:
     build: ts-eureka-registry
+    image: ts-eureka-registry
     restart: always
     ports:
       - 8030:8030

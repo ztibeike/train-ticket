@@ -60,6 +60,8 @@
 		<module>test-resttemplate</module>
 		<module>ts-train2-service</module>
 		<module>ts-zuul-train</module>
+        <module>ts-price2-service</module>
+		<module>ts-zuul-price</module>
 		<!--<module>ts-ticket-advance-service</module>-->
 		<!--<module>1_services_analysis_mvn</module>-->
     </modules>

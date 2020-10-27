@@ -33,6 +33,7 @@ public class BasicServiceImpl implements BasicService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicServiceImpl.class);
     private final String ts_zuul_station = "http://ts-zuul-station";
     private final String ts_zuul_train = "http://ts-zuul-train";
+    private final String ts_zuul_price = "http://ts-zuul-price";
 
     @Override
     public Response queryForTravel(Travel info, HttpHeaders headers) {
@@ -170,8 +171,8 @@ public class BasicServiceImpl implements BasicService {
     private PriceConfig queryPriceConfigByRouteIdAndTrainType(String routeId, String trainType, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Price Config] RouteId: {} ,TrainType: {}", routeId, trainType);
         HttpEntity requestEntity = new HttpEntity(null, headers);
-        ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-price-service:16579/api/v1/priceservice/prices/" + routeId + "/" + trainType,
+        ResponseEntity<Response> re = loadBalanced.exchange(
+                ts_zuul_price + "/api/v1/priceservice/prices/" + routeId + "/" + trainType,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);

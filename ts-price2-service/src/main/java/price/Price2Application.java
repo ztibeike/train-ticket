@@ -20,10 +20,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @IntegrationComponentScan
 @EnableSwagger2
 @EnableEurekaClient
-public class PriceApplication {
+public class Price2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(PriceApplication.class, args);
+        SpringApplication.run(Price2Application.class, args);
     }
 
     @Bean
