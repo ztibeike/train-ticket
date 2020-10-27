@@ -126,7 +126,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Check Station Exists] Station Name: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response> re = loadBalanced.exchange(
-                ts_zuul_station + "api/v1/stationservice/stations/id/" + stationName,
+                ts_zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
