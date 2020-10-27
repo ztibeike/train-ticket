@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: ts-zuul-station
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+server:
+  port: 30001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  RibbonRoutingFilter:
+    route:
+      disable: true
+  routes:
+    zuul:
+      path: /zuulApi/**
+      service-id: ts-zuul-station
+
+    station:
+      path: /api/v1/stationservice/**
+      service-id: ts-station-service
+      strip-prefix: false

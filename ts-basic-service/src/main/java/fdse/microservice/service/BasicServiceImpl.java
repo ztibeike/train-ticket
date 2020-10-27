@@ -6,6 +6,7 @@ import fdse.microservice.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 
 /**
@@ -24,7 +26,13 @@ public class BasicServiceImpl implements BasicService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Resource
+    @LoadBalanced
+    private RestTemplate loadBalanced;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicServiceImpl.class);
+    private final String ts_zuul_station = "http://ts-zuul-station";
+    private final String ts_zuul_train = "http://ts-zuul-train";
 
     @Override
     public Response queryForTravel(Travel info, HttpHeaders headers) {
@@ -105,19 +113,20 @@ public class BasicServiceImpl implements BasicService {
     public Response queryForStationId(String stationName, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Station Id] Station Id: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-station-service:12345/api/v1/stationservice/stations/id/" + stationName,
+        ResponseEntity<Response> re = loadBalanced.exchange(
+                ts_zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
         return  re.getBody();
     }
 
+    @Override
     public boolean checkStationExists(String stationName, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Check Station Exists] Station Name: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-station-service:12345/api/v1/stationservice/stations/id/" + stationName,
+        ResponseEntity<Response> re = loadBalanced.exchange(
+                ts_zuul_station + "api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -126,11 +135,12 @@ public class BasicServiceImpl implements BasicService {
         return exist.getStatus() == 1;
     }
 
+    @Override
     public TrainType queryTrainType(String trainTypeId, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query Train Type] Train Type: {}", trainTypeId);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-train-service:14567/api/v1/trainservice/trains/" + trainTypeId,
+        ResponseEntity<Response> re = loadBalanced.exchange(
+                ts_zuul_train + "/api/v1/trainservice/trains/" + trainTypeId,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);

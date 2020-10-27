@@ -1,10 +1,13 @@
 package fdse.microservice.controller;
 
+import edu.fudan.common.util.Response;
+import fdse.microservice.entity.TrainType;
 import fdse.microservice.entity.Travel;
 import fdse.microservice.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -15,7 +18,6 @@ import static org.springframework.http.ResponseEntity.ok;
  */
 @RestController
 @RequestMapping("/api/v1/basicservice")
-
 public class BasicController {
 
     @Autowired
@@ -36,6 +38,16 @@ public class BasicController {
     public HttpEntity queryForStationId(@PathVariable String stationName, @RequestHeader HttpHeaders headers) {
         // String id
         return ok(service.queryForStationId(stationName, headers));
+    }
+
+    @GetMapping("/basic/checkStationExists/{name}")
+    public boolean checkStationExists(@PathVariable("name") String name, @RequestHeader HttpHeaders headers) {
+        return service.checkStationExists(name, headers);
+    }
+
+    @GetMapping("/basic/queryTrainType/{id}")
+    public TrainType queryTrainType(@PathVariable("id") String trainTypeId, @RequestHeader HttpHeaders headers) {
+        return service.queryTrainType(trainTypeId, headers);
     }
 
 }

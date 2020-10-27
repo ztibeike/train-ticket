@@ -27,4 +27,8 @@ public interface BasicService {
      * @return Response
      */
     Response queryForStationId(String stationName, HttpHeaders headers);
+
+    boolean checkStationExists(String stationName, HttpHeaders headers);
+
+    TrainType queryTrainType(String trainTypeId, HttpHeaders headers);
 }
