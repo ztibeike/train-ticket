@@ -15,3 +15,14 @@ spring:
 
 swagger:
   controllerPackage: com.trainticket.controller
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+info:
+  leaf: 1
+  port: ${server.port}

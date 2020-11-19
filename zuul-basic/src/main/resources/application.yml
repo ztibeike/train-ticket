@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: zuul-basic
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+server:
+  port: 30005
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  RibbonRoutingFilter:
+    route:
+      disable: true
+  routes:
+    zuul:
+      path: /zuulApi/**
+      service-id: zuul-basic
+
+    basic:
+      path: /api/v1/basicservice/**
+      service-id: ts-basic-service
+      strip-prefix: false
+
+    zuul-route:
+      path: /api/v1/routeservice/**
+      service-id: zuul-route
+      strip-prefix: false
+
+    zuul-train:
+      path: /api/v1/trainservice/**
+      service-id: zuul-train
+      strip-prefix: false
+
+    zuul-price:
+      path: /api/v1/priceservice/**
+      service-id: zuul-price
+      strip-prefix: false
+
+    zuul-station:
+      path: /api/v1/stationservice/**
+      service-id: zuul-station
+      strip-prefix: false

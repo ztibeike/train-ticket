@@ -1,13 +1,13 @@
 version: '3'
 services:
 
-#  rabbitmq:
-#    image: rabbitmq:management
-#    ports:
-#      - 5672:5672
-#      - 15672:15672
-#    networks:
-#      - my-network
+  #  rabbitmq:
+  #    image: rabbitmq:management
+  #    ports:
+  #      - 5672:5672
+  #      - 15672:15672
+  #    networks:
+  #      - my-network
 
   # kafka:
   #   container_name: kafka
@@ -18,73 +18,697 @@ services:
   #   networks:
   #     - my-network
 
-#  zipkin:
-#    image: openzipkin/zipkin
-#    ports:
-#      - 9411:9411
-#    networks:
-#      - my-network
+  #  zipkin:
+  #    image: openzipkin/zipkin
+  #    ports:
+  #      - 9411:9411
+  #    networks:
+  #      - my-network
 
   eureka-demo:
-    build: ts-eureka-registry
-    image: ts-eureka-registry
+    build: eureka-registry
+    image: eureka-registry
     restart: always
     ports:
       - 8030:8030
     networks:
       - my-network
 
-  ts-station2-service:
-    build: ts-station2-service
-    image: ts-station2-service
-    restart: always
-    ports:
-      - 16345:16345
-    networks:
-      - my-network
+  #  ts-station2-service:
+  #    build: ts-station2-service
+  #    image: ts-station2-service
+  #    restart: always
+  #    ports:
+  #      - 16345:16345
+  #    networks:
+  #      - my-network
+  #
+  #
+  #  ts-train2-service:
+  #    build: ts-train2-service
+  #    image: ts-train2-service
+  #    restart: always
+  #    ports:
+  #      - 16567:16567
+  #    networks:
+  #      - my-network
+  #
+  #
+  #  ts-price2-service:
+  #    build: ts-price2-service
+  #    image: ts-price2-service
+  #    restart: always
+  #    ports:
+  #      - 18579:18579
+  #    networks:
+  #      - my-network
+  #
 
-  ts-zuul-station:
-    build: ts-zuul-station
-    image: ts-zuul-station
+  zuul-station:
+    build: zuul-station
+    image: zuul-station
     restart: always
     ports:
       - 30001:30001
     networks:
       - my-network
 
-  ts-train2-service:
-    build: ts-train2-service
-    image: ts-train2-service
+  ts-station-service:
+    build: ts-station-service
+    image: ts-station-service
     restart: always
     ports:
-      - 16567:16567
+      - 12345:12345
     networks:
       - my-network
 
-  ts-zuul-train:
-    build: ts-zuul-train
-    image: ts-zuul-train
+  ts-station-service-2:
+    build: ts-station-service
+    image: ts-station-service
+    restart: always
+    ports:
+      - 12001:12345
+    networks:
+      - my-network
+
+  ts-station-service-3:
+    build: ts-station-service
+    image: ts-station-service
+    restart: always
+    ports:
+      - 12002:12345
+    networks:
+      - my-network
+
+  ts-station-service-4:
+    build: ts-station-service
+    image: ts-station-service
+    restart: always
+    ports:
+      - 12003:12345
+    networks:
+      - my-network
+
+  ts-station-service-5:
+    build: ts-station-service
+    image: ts-station-service
+    restart: always
+    ports:
+      - 12004:12345
+    networks:
+      - my-network
+
+  zuul-train:
+    build: zuul-train
+    image: zuul-train
     restart: always
     ports:
       - 30002:30002
     networks:
       - my-network
 
-  ts-price2-service:
-    build: ts-price2-service
-    image: ts-price2-service
+  ts-train-service:
+    build: ts-train-service
+    image: ts-train-service
     restart: always
     ports:
-      - 18579:18579
+      - 14567:14567
     networks:
       - my-network
 
-  ts-zuul-price:
-    build: ts-zuul-price
-    image: ts-zuul-price
+  ts-train-service-2:
+    build: ts-train-service
+    image: ts-train-service
+    restart: always
+    ports:
+      - 12005:14567
+    networks:
+      - my-network
+
+  ts-train-service-3:
+    build: ts-train-service
+    image: ts-train-service
+    restart: always
+    ports:
+      - 12006:14567
+    networks:
+      - my-network
+
+  ts-train-service-4:
+    build: ts-train-service
+    image: ts-train-service
+    restart: always
+    ports:
+      - 12007:14567
+    networks:
+      - my-network
+
+  ts-train-service-5:
+    build: ts-train-service
+    image: ts-train-service
+    restart: always
+    ports:
+      - 12008:14567
+    networks:
+      - my-network
+
+  zuul-price:
+    build: zuul-price
+    image: zuul-price
     restart: always
     ports:
       - 30003:30003
+    networks:
+      - my-network
+
+  ts-price-service:
+    build: ts-price-service
+    image: ts-price-service
+    restart: always
+    ports:
+      - 16579:16579
+    networks:
+      - my-network
+
+  ts-price-service-2:
+    build: ts-price-service
+    image: ts-price-service
+    restart: always
+    ports:
+      - 12009:16579
+    networks:
+      - my-network
+
+  ts-price-service-3:
+    build: ts-price-service
+    image: ts-price-service
+    restart: always
+    ports:
+      - 12010:16579
+    networks:
+      - my-network
+
+  ts-price-service-4:
+    build: ts-price-service
+    image: ts-price-service
+    restart: always
+    ports:
+      - 12011:16579
+    networks:
+      - my-network
+
+  ts-price-service-5:
+    build: ts-price-service
+    image: ts-price-service
+    restart: always
+    ports:
+      - 12012:16579
+    networks:
+      - my-network
+
+  zuul-route:
+    build: zuul-route
+    image: zuul-route
+    restart: always
+    ports:
+      - 30004:30004
+    networks:
+      - my-network
+
+  ts-route-service:
+    build: ts-route-service
+    image: ts-route-service
+    restart: always
+    ports:
+      - 11178:11178
+    networks:
+      - my-network
+
+  ts-route-service-2:
+    build: ts-route-service
+    image: ts-route-service
+    restart: always
+    ports:
+      - 12013:11178
+    networks:
+      - my-network
+
+  ts-route-service-3:
+    build: ts-route-service
+    image: ts-route-service
+    restart: always
+    ports:
+      - 12014:11178
+    networks:
+      - my-network
+
+  ts-route-service-4:
+    build: ts-route-service
+    image: ts-route-service
+    restart: always
+    ports:
+      - 12015:11178
+    networks:
+      - my-network
+
+  ts-route-service-5:
+    build: ts-route-service
+    image: ts-route-service
+    restart: always
+    ports:
+      - 12016:11178
+    networks:
+      - my-network
+
+  zuul-basic:
+    build: zuul-basic
+    image: zuul-basic
+    restart: always
+    ports:
+      - 30005:30005
+    networks:
+      - my-network
+
+  ts-basic-service:
+    build: ts-basic-service
+    image: ts-basic-service
+    restart: always
+    ports:
+      - 15680:15680
+    networks:
+      - my-network
+
+  ts-basic-service-2:
+    build: ts-basic-service
+    image: ts-basic-service
+    restart: always
+    ports:
+      - 12017:15680
+    networks:
+      - my-network
+
+  ts-basic-service-3:
+    build: ts-basic-service
+    image: ts-basic-service
+    restart: always
+    ports:
+      - 12018:15680
+    networks:
+      - my-network
+
+  ts-basic-service-4:
+    build: ts-basic-service
+    image: ts-basic-service
+    restart: always
+    ports:
+      - 12019:15680
+    networks:
+      - my-network
+
+  ts-basic-service-5:
+    build: ts-basic-service
+    image: ts-basic-service
+    restart: always
+    ports:
+      - 12020:15680
+    networks:
+      - my-network
+
+  zuul-payment:
+    build: zuul-payment
+    image: zuul-payment
+    restart: always
+    ports:
+      - 30006:30006
+    networks:
+      - my-network
+
+  ts-payment-service:
+    build: ts-payment-service
+    image: ts-payment-service
+    restart: always
+    ports:
+      - 19001:19001
+    networks:
+      - my-network
+
+  ts-payment-service-2:
+    build: ts-payment-service
+    image: ts-payment-service
+    restart: always
+    ports:
+      - 12021:19001
+    networks:
+      - my-network
+
+  ts-payment-service-3:
+    build: ts-payment-service
+    image: ts-payment-service
+    restart: always
+    ports:
+      - 12022:19001
+    networks:
+      - my-network
+
+  ts-payment-service-4:
+    build: ts-payment-service
+    image: ts-payment-service
+    restart: always
+    ports:
+      - 12023:19001
+    networks:
+      - my-network
+
+  ts-payment-service-5:
+    build: ts-payment-service
+    image: ts-payment-service
+    restart: always
+    ports:
+      - 12024:19001
+    networks:
+      - my-network
+
+  zuul-inside-payment:
+    build: zuul-inside-payment
+    image: zuul-inside-payment
+    restart: always
+    ports:
+      - 30007:30007
+    networks:
+      - my-network
+
+  ts-inside-payment-service:
+    build: ts-inside-payment-service
+    image: ts-inside-payment-service
+    restart: always
+    ports:
+      - 18673:18673
+    networks:
+      - my-network
+
+  ts-inside-payment-service-2:
+    build: ts-inside-payment-service
+    image: ts-inside-payment-service
+    restart: always
+    ports:
+      - 12025:18673
+    networks:
+      - my-network
+
+  ts-inside-payment-service-3:
+    build: ts-inside-payment-service
+    image: ts-inside-payment-service
+    restart: always
+    ports:
+      - 12026:18673
+    networks:
+      - my-network
+
+  ts-inside-payment-service-4:
+    build: ts-inside-payment-service
+    image: ts-inside-payment-service
+    restart: always
+    ports:
+      - 12027:18673
+    networks:
+      - my-network
+
+  ts-inside-payment-service-5:
+    build: ts-inside-payment-service
+    image: ts-inside-payment-service
+    restart: always
+    ports:
+      - 12028:18673
+    networks:
+      - my-network
+
+  zuul-order:
+    build: zuul-order
+    image: zuul-order
+    restart: always
+    ports:
+      - 30008:30008
+    networks:
+      - my-network
+
+  ts-order-service:
+    build: ts-order-service
+    image: ts-order-service
+    restart: always
+    ports:
+      - 12031:12031
+    networks:
+      - my-network
+
+  ts-order-service-2:
+    build: ts-order-service
+    image: ts-order-service
+    restart: always
+    ports:
+      - 12033:12031
+    networks:
+      - my-network
+
+  ts-order-service-3:
+    build: ts-order-service
+    image: ts-order-service
+    restart: always
+    ports:
+      - 12034:12031
+    networks:
+      - my-network
+
+  ts-order-service-4:
+    build: ts-order-service
+    image: ts-order-service
+    restart: always
+    ports:
+      - 12035:12031
+    networks:
+      - my-network
+
+  ts-order-service-5:
+    build: ts-order-service
+    image: ts-order-service
+    restart: always
+    ports:
+      - 12036:12031
+    networks:
+      - my-network
+
+  zuul-order-other:
+    build: zuul-order-other
+    image: zuul-order-other
+    restart: always
+    ports:
+      - 30009:30009
+    networks:
+      - my-network
+
+  ts-order-other-service:
+    build: ts-order-other-service
+    image: ts-order-other-service
+    restart: always
+    ports:
+      - 12032:12032
+    networks:
+      - my-network
+
+  ts-order-other-service-2:
+    build: ts-order-other-service
+    image: ts-order-other-service
+    restart: always
+    ports:
+      - 12037:12032
+    networks:
+      - my-network
+
+  ts-order-other-service-3:
+    build: ts-order-other-service
+    image: ts-order-other-service
+    restart: always
+    ports:
+      - 12038:12032
+    networks:
+      - my-network
+
+  ts-order-other-service-4:
+    build: ts-order-other-service
+    image: ts-order-other-service
+    restart: always
+    ports:
+      - 12039:12032
+    networks:
+      - my-network
+
+  ts-order-other-service-5:
+    build: ts-order-other-service
+    image: ts-order-other-service
+    restart: always
+    ports:
+      - 12040:12032
+    networks:
+      - my-network
+
+  zuul-notification:
+    build: zuul-notification
+    image: zuul-notification
+    restart: always
+    ports:
+      - 30010:30010
+    networks:
+      - my-network
+
+  ts-notification-service:
+    build: ts-notification-service
+    image: ts-notification-service
+    restart: always
+    ports:
+      - 17853:17853
+    networks:
+      - my-network
+
+  ts-notification-service-2:
+    build: ts-notification-service
+    image: ts-notification-service
+    restart: always
+    ports:
+      - 12041:17853
+    networks:
+      - my-network
+
+  ts-notification-service-3:
+    build: ts-notification-service
+    image: ts-notification-service
+    restart: always
+    ports:
+      - 12042:17853
+    networks:
+      - my-network
+
+  ts-notification-service-4:
+    build: ts-notification-service
+    image: ts-notification-service
+    restart: always
+    ports:
+      - 12043:17853
+    networks:
+      - my-network
+
+  ts-notification-service-5:
+    build: ts-notification-service
+    image: ts-notification-service
+    restart: always
+    ports:
+      - 12044:17853
+    networks:
+      - my-network
+
+  zuul-user:
+    build: zuul-user
+    image: zuul-user
+    restart: always
+    ports:
+      - 30011:30011
+    networks:
+      - my-network
+
+  ts-user-service:
+    build: ts-user-service
+    image: ts-user-service
+    restart: always
+    ports:
+      - 12342:12342
+    networks:
+      - my-network
+
+  ts-user-service-2:
+    build: ts-user-service
+    image: ts-user-service
+    restart: always
+    ports:
+      - 12045:12342
+    networks:
+      - my-network
+
+  ts-user-service-3:
+    build: ts-user-service
+    image: ts-user-service
+    restart: always
+    ports:
+      - 12046:12342
+    networks:
+      - my-network
+
+  ts-user-service-4:
+    build: ts-user-service
+    image: ts-user-service
+    restart: always
+    ports:
+      - 12047:12342
+    networks:
+      - my-network
+
+  ts-user-service-5:
+    build: ts-user-service
+    image: ts-user-service
+    restart: always
+    ports:
+      - 12048:12342
+    networks:
+      - my-network
+
+  zuul-cancel:
+    build: zuul-cancel
+    image: zuul-cancel
+    restart: always
+    ports:
+      - 30012:30012
+    networks:
+      - my-network
+
+  ts-cancel-service:
+    build: ts-cancel-service
+    image: ts-cancel-service
+    restart: always
+    ports:
+      - 18885:18885
+    networks:
+      - my-network
+
+  ts-cancel-service-2:
+    build: ts-cancel-service
+    image: ts-cancel-service
+    restart: always
+    ports:
+      - 12049:18885
+    networks:
+      - my-network
+
+  ts-cancel-service-3:
+    build: ts-cancel-service
+    image: ts-cancel-service
+    restart: always
+    ports:
+      - 12050:18885
+    networks:
+      - my-network
+
+  ts-cancel-service-4:
+    build: ts-cancel-service
+    image: ts-cancel-service
+    restart: always
+    ports:
+      - 12051:18885
+    networks:
+      - my-network
+
+  ts-cancel-service-5:
+    build: ts-cancel-service
+    image: ts-cancel-service
+    restart: always
+    ports:
+      - 12052:18885
     networks:
       - my-network
 
@@ -118,15 +742,6 @@ services:
     networks:
       - my-network
 
-  ts-user-service:
-    build: ts-user-service
-    image: codewisdom/ts-user-service
-    restart: always
-    ports:
-      - 12342:12342
-    networks:
-      - my-network
-
   ts-user-mongo:
     image: mongo
     networks:
@@ -147,19 +762,11 @@ services:
     networks:
       - my-network
 
-  ts-route-service:
-    build: ts-route-service
-    image: codewisdom/ts-route-service
-    restart: always
-    ports:
-         - 11178:11178
-    networks:
-      - my-network
 
   ts-route-mongo:
     image: mongo
     networks:
-        - my-network
+      - my-network
 
   ts-contacts-service:
     build: ts-contacts-service
@@ -171,16 +778,7 @@ services:
       - my-network
 
   ts-contacts-mongo:
-      image: mongo
-      networks:
-        - my-network
-
-  ts-order-service:
-    build: ts-order-service
-    image: codewisdom/ts-order-service
-    restart: always
-    ports:
-      - 12031:12031
+    image: mongo
     networks:
       - my-network
 
@@ -189,15 +787,6 @@ services:
     networks:
       - my-network
 
-
-  ts-order-other-service:
-    build: ts-order-other-service
-    image: codewisdom/ts-order-other-service
-    restart: always
-    ports:
-      - 12032:12032
-    networks:
-      - my-network
 
   ts-order-other-mongo:
     image: mongo
@@ -219,26 +808,8 @@ services:
     networks:
       - my-network
 
-  ts-station-service:
-    build: ts-station-service
-    image: codewisdom/ts-station-service
-    restart: always
-    ports:
-      - 12345:12345
-    networks:
-      - my-network
-
   ts-station-mongo:
     image: mongo
-    networks:
-      - my-network
-
-  ts-train-service:
-    build: ts-train-service
-    image: codewisdom/ts-train-service
-    restart: always
-    ports:
-      - 14567:14567
     networks:
       - my-network
 
@@ -262,18 +833,18 @@ services:
       - my-network
 
   ts-travel2-service:
-      build: ts-travel2-service
-      image: codewisdom/ts-travel2-service
-      restart: always
-      ports:
-        - 16346:16346
-      networks:
-        - my-network
+    build: ts-travel2-service
+    image: codewisdom/ts-travel2-service
+    restart: always
+    ports:
+      - 16346:16346
+    networks:
+      - my-network
 
   ts-travel2-mongo:
-      image: mongo
-      networks:
-        - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-preserve-service:
     build: ts-preserve-service
@@ -294,166 +865,113 @@ services:
       - my-network
 
 
-  ts-basic-service:
-      build: ts-basic-service
-      image: codewisdom/ts-basic-service
-      restart: always
-      ports:
-        - 15680:15680
-      networks:
-          - my-network
-
   ts-ticketinfo-service:
-        build: ts-ticketinfo-service
-        image: codewisdom/ts-ticketinfo-service
-        restart: always
-        ports:
-          - 15681:15681
-        networks:
-          - my-network
+    build: ts-ticketinfo-service
+    image: codewisdom/ts-ticketinfo-service
+    restart: always
+    ports:
+      - 15681:15681
+    networks:
+      - my-network
 
-  ts-price-service:
-        build: ts-price-service
-        image: codewisdom/ts-price-service
-        restart: always
-        ports:
-          - 16579:16579
-        networks:
-          - my-network
 
   ts-price-mongo:
-        image: mongo
-        networks:
-          - my-network
-
-  ts-notification-service:
-        build: ts-notification-service
-        image: codewisdom/ts-notification-service
-        restart: always
-        ports:
-          - 17853:17853
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-security-service:
-        build: ts-security-service
-        image: codewisdom/ts-security-service
-        restart: always
-        ports:
-          - 11188:11188
-        networks:
-          - my-network
+    build: ts-security-service
+    image: codewisdom/ts-security-service
+    restart: always
+    ports:
+      - 11188:11188
+    networks:
+      - my-network
 
   ts-security-mongo:
-        image: mongo
-        networks:
-          - my-network
-
-  ts-inside-payment-service:
-        build: ts-inside-payment-service
-        image: codewisdom/ts-inside-payment-service
-        restart: always
-        ports:
-          - 18673:18673
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-inside-payment-mongo:
-        image: mongo
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-execute-service:
-        build: ts-execute-service
-        image: codewisdom/ts-execute-service
-        restart: always
-        ports:
-          - 12386:12386
-        networks:
-          - my-network
-
-  ts-payment-service:
-        build: ts-payment-service
-        image: codewisdom/ts-payment-service
-        restart: always
-        ports:
-          - 19001:19001
-        networks:
-          - my-network
+    build: ts-execute-service
+    image: codewisdom/ts-execute-service
+    restart: always
+    ports:
+      - 12386:12386
+    networks:
+      - my-network
 
   ts-payment-mongo:
-        image: mongo
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-rebook-service:
-        build: ts-rebook-service
-        image: codewisdom/ts-rebook-service
-        restart: always
-        ports:
-          - 18886:18886
-        networks:
-          - my-network
+    build: ts-rebook-service
+    image: codewisdom/ts-rebook-service
+    restart: always
+    ports:
+      - 18886:18886
+    networks:
+      - my-network
 
   ts-rebook-mongo:
-        image: mongo
-        networks:
-          - my-network
-
-  ts-cancel-service:
-        build: ts-cancel-service
-        image: codewisdom/ts-cancel-service
-        restart: always
-        ports:
-          - 18885:18885
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-assurance-service:
-        build: ts-assurance-service
-        image: codewisdom/ts-assurance-service
-        restart: always
-        ports:
-          - 18888:18888
-        networks:
-          - my-network
+    build: ts-assurance-service
+    image: codewisdom/ts-assurance-service
+    restart: always
+    ports:
+      - 18888:18888
+    networks:
+      - my-network
 
   ts-assurance-mongo:
-        image: mongo
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-seat-service:
-        build: ts-seat-service
-        image: codewisdom/ts-seat-service
-        restart: always
-        ports:
-          - 18898:18898
-        networks:
-          - my-network
+    build: ts-seat-service
+    image: codewisdom/ts-seat-service
+    restart: always
+    ports:
+      - 18898:18898
+    networks:
+      - my-network
 
   ts-travel-plan-service:
-        build: ts-travel-plan-service
-        image: codewisdom/ts-travel-plan-service
-        restart: always
-        ports:
-          - 14322:14322
-        networks:
-          - my-network
+    build: ts-travel-plan-service
+    image: codewisdom/ts-travel-plan-service
+    restart: always
+    ports:
+      - 14322:14322
+    networks:
+      - my-network
 
   ts-ticket-office-service:
-        build: ts-ticket-office-service
-        image: codewisdom/ts-ticket-office-service
-        restart: always
-        ports:
-          - 16108:16108
-        networks:
-          - my-network
+    build: ts-ticket-office-service
+    image: codewisdom/ts-ticket-office-service
+    restart: always
+    ports:
+      - 16108:16108
+    networks:
+      - my-network
 
   ts-ticket-office-mongo:
-          image: mongo
-          networks:
-            - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-news-service:
     build: ts-news-service
@@ -465,140 +983,140 @@ services:
       - my-network
 
   ts-news-mongo:
-        image: mongo
-        networks:
-          - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-voucher-mysql:
-         image: mysql
-         expose:
-            - "3306"
-         environment:
-           MYSQL_ROOT_PASSWORD: root
-         networks:
-           - my-network
+    image: mysql
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - my-network
 
   ts-voucher-service:
-          build: ts-voucher-service
-          image: codewisdom/ts-voucher-service
-          restart: always
-          ports:
-            - 16101:16101
-          depends_on:
-            - ts-voucher-mysql
-          volumes:
-            - /var/lib/mysql
-          networks:
-            - my-network
+    build: ts-voucher-service
+    image: codewisdom/ts-voucher-service
+    restart: always
+    ports:
+      - 16101:16101
+    depends_on:
+      - ts-voucher-mysql
+    volumes:
+      - /var/lib/mysql
+    networks:
+      - my-network
 
   ts-food-map-service:
-        build: ts-food-map-service
-        image: codewisdom/ts-food-map-service
-        restart: always
-        ports:
-          - 18855:18855
-        networks:
-          - my-network
+    build: ts-food-map-service
+    image: codewisdom/ts-food-map-service
+    restart: always
+    ports:
+      - 18855:18855
+    networks:
+      - my-network
 
   ts-food-map-mongo:
-          image: mongo
-          networks:
-            - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-route-plan-service:
-          build: ts-route-plan-service
-          image: codewisdom/ts-route-plan-service
-          restart: always
-          ports:
-            - 14578:14578
-          networks:
-            - my-network
+    build: ts-route-plan-service
+    image: codewisdom/ts-route-plan-service
+    restart: always
+    ports:
+      - 14578:14578
+    networks:
+      - my-network
 
   ts-food-service:
-      build: ts-food-service
-      image: codewisdom/ts-food-service
-      restart: always
-      ports:
-        - 18856:18856
-      networks:
-        - my-network
+    build: ts-food-service
+    image: codewisdom/ts-food-service
+    restart: always
+    ports:
+      - 18856:18856
+    networks:
+      - my-network
 
   ts-consign-service:
-            build: ts-consign-service
-            image: codewisdom/ts-consign-service
-            restart: always
-            ports:
-              - 16111:16111
-            networks:
-              - my-network
+    build: ts-consign-service
+    image: codewisdom/ts-consign-service
+    restart: always
+    ports:
+      - 16111:16111
+    networks:
+      - my-network
 
   ts-consign-mongo:
-            image: mongo
-            networks:
-              - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-consign-price-service:
-            build: ts-consign-price-service
-            image: codewisdom/ts-consign-price-service
-            restart: always
-            ports:
-              - 16110:16110
-            networks:
-              - my-network
+    build: ts-consign-price-service
+    image: codewisdom/ts-consign-price-service
+    restart: always
+    ports:
+      - 16110:16110
+    networks:
+      - my-network
 
   ts-consign-price-mongo:
-            image: mongo
-            networks:
-              - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-food-mongo:
-            image: mongo
-            networks:
-              - my-network
+    image: mongo
+    networks:
+      - my-network
 
   ts-admin-basic-info-service:
-        build: ts-admin-basic-info-service
-        image: codewisdom/ts-admin-basic-info-service
-        restart: always
-        ports:
-          - 18767:18767
-        networks:
-          - my-network
+    build: ts-admin-basic-info-service
+    image: codewisdom/ts-admin-basic-info-service
+    restart: always
+    ports:
+      - 18767:18767
+    networks:
+      - my-network
 
   ts-admin-order-service:
-            build: ts-admin-order-service
-            image: codewisdom/ts-admin-order-service
-            restart: always
-            ports:
-              - 16112:16112
-            networks:
-              - my-network
+    build: ts-admin-order-service
+    image: codewisdom/ts-admin-order-service
+    restart: always
+    ports:
+      - 16112:16112
+    networks:
+      - my-network
 
   ts-admin-route-service:
-              build: ts-admin-route-service
-              image: codewisdom/ts-admin-route-service
-              restart: always
-              ports:
-                - 16113:16113
-              deploy:
-                replicas: 1
-                restart_policy:
-                  condition: on-failure
-              networks:
-                - my-network
+    build: ts-admin-route-service
+    image: codewisdom/ts-admin-route-service
+    restart: always
+    ports:
+      - 16113:16113
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - my-network
 
   ts-admin-travel-service:
-                build: ts-admin-travel-service
-                image: codewisdom/ts-admin-travel-service
-                restart: always
-                ports:
-                  - 16114:16114
-                deploy:
-                  replicas: 1
-                  restart_policy:
-                    condition: on-failure
-                networks:
-                  - my-network
+    build: ts-admin-travel-service
+    image: codewisdom/ts-admin-travel-service
+    restart: always
+    ports:
+      - 16114:16114
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - my-network
 
   ts-admin-user-service:
     build: ts-admin-user-service
@@ -615,9 +1133,9 @@ services:
 
 
 networks:
-    my-network:
-      # driver: overlay
-      driver: bridge
+  my-network:
+    # driver: overlay
+    driver: bridge
 
 
 

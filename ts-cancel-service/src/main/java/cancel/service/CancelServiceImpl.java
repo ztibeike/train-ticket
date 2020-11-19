@@ -27,6 +27,7 @@ public class CancelServiceImpl implements CancelService {
     private RestTemplate restTemplate;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CancelServiceImpl.class);
+    private final String zuul_cancel = "http://zuul-cancel";
 
     String orderStatusCancelNotPermitted = "Order Status Cancel Not Permitted";
 
@@ -131,7 +132,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Send Email]");
         HttpEntity requestEntity = new HttpEntity(notifyInfo, headers);
         ResponseEntity<Boolean> re = restTemplate.exchange(
-                "http://ts-notification-service:17853/api/v1/notifyservice/notification/order_cancel_success",
+                zuul_cancel + "/api/v1/notifyservice/notification/order_cancel_success",
                 HttpMethod.POST,
                 requestEntity,
                 Boolean.class);
@@ -225,7 +226,7 @@ public class CancelServiceImpl implements CancelService {
 
         HttpEntity requestEntity = new HttpEntity(order, headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-order-service:12031/api/v1/orderservice/order",
+                zuul_cancel + "/api/v1/orderservice/order",
                 HttpMethod.PUT,
                 requestEntity,
                 Response.class);
@@ -237,7 +238,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Change Order Status] Changing....");
         HttpEntity requestEntity = new HttpEntity(info, headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther",
+                zuul_cancel + "/api/v1/orderOtherService/orderOther",
                 HttpMethod.PUT,
                 requestEntity,
                 Response.class);
@@ -250,7 +251,7 @@ public class CancelServiceImpl implements CancelService {
 
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-inside-payment-service:18673/api/v1/inside_pay_service/inside_payment/drawback/" + userId + "/" + money,
+                zuul_cancel + "/api/v1/inside_pay_service/inside_payment/drawback/" + userId + "/" + money,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -263,7 +264,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get By Id]");
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response<User>> re = restTemplate.exchange(
-                "http://ts-user-service:12342/api/v1/userservice/users/id/" + orderId,
+                zuul_cancel + "/api/v1/userservice/users/id/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<User>>() {
@@ -275,7 +276,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get Order] Getting....");
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response<Order>> re = restTemplate.exchange(
-                "http://ts-order-service:12031/api/v1/orderservice/order/" + orderId,
+                zuul_cancel + "/api/v1/orderservice/order/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<Order>>() {
@@ -287,7 +288,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get Order] Getting....");
         HttpEntity requestEntity = new HttpEntity(  headers);
         ResponseEntity<Response<Order>> re = restTemplate.exchange(
-                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + orderId,
+                zuul_cancel + "/api/v1/orderOtherService/orderOther/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<Order>>() {

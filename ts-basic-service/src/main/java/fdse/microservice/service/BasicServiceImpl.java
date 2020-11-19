@@ -24,16 +24,11 @@ import java.util.HashMap;
 public class BasicServiceImpl implements BasicService {
 
     @Autowired
+    @LoadBalanced
     private RestTemplate restTemplate;
 
-    @Resource
-    @LoadBalanced
-    private RestTemplate loadBalanced;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicServiceImpl.class);
-    private final String ts_zuul_station = "http://ts-zuul-station";
-    private final String ts_zuul_train = "http://ts-zuul-train";
-    private final String ts_zuul_price = "http://ts-zuul-price";
+    private final String zuul_basic = "http://zuul-basic";
 
     @Override
     public Response queryForTravel(Travel info, HttpHeaders headers) {
@@ -114,8 +109,8 @@ public class BasicServiceImpl implements BasicService {
     public Response queryForStationId(String stationName, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Station Id] Station Id: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = loadBalanced.exchange(
-                ts_zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
+        ResponseEntity<Response> re = restTemplate.exchange(
+                zuul_basic + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -126,8 +121,8 @@ public class BasicServiceImpl implements BasicService {
     public boolean checkStationExists(String stationName, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Check Station Exists] Station Name: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = loadBalanced.exchange(
-                ts_zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
+        ResponseEntity<Response> re = restTemplate.exchange(
+                zuul_basic + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -140,8 +135,8 @@ public class BasicServiceImpl implements BasicService {
     public TrainType queryTrainType(String trainTypeId, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query Train Type] Train Type: {}", trainTypeId);
         HttpEntity requestEntity = new HttpEntity( headers);
-        ResponseEntity<Response> re = loadBalanced.exchange(
-                ts_zuul_train + "/api/v1/trainservice/trains/" + trainTypeId,
+        ResponseEntity<Response> re = restTemplate.exchange(
+                zuul_basic + "/api/v1/trainservice/trains/" + trainTypeId,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -154,7 +149,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Get Route By Id] Route ID：{}", routeId);
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                "http://ts-route-service:11178/api/v1/routeservice/routes/" + routeId,
+                zuul_basic + "/api/v1/routeservice/routes/" + routeId,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -171,8 +166,8 @@ public class BasicServiceImpl implements BasicService {
     private PriceConfig queryPriceConfigByRouteIdAndTrainType(String routeId, String trainType, HttpHeaders headers) {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Price Config] RouteId: {} ,TrainType: {}", routeId, trainType);
         HttpEntity requestEntity = new HttpEntity(null, headers);
-        ResponseEntity<Response> re = loadBalanced.exchange(
-                ts_zuul_price + "/api/v1/priceservice/prices/" + routeId + "/" + trainType,
+        ResponseEntity<Response> re = restTemplate.exchange(
+                zuul_basic + "/api/v1/priceservice/prices/" + routeId + "/" + trainType,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);

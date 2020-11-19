@@ -34,6 +34,7 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
     public RestTemplate restTemplate;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InsidePaymentServiceImpl.class);
+    private final String zuul_inside_payment = "http://zuul-inside-payment";
 
     @Override
     public Response pay(PaymentInfo info, HttpHeaders headers) {
@@ -42,9 +43,9 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
 
         String requestOrderURL = "";
         if (info.getTripId().startsWith("G") || info.getTripId().startsWith("D")) {
-            requestOrderURL =  "http://ts-order-service:12031/api/v1/orderservice/order/" + info.getOrderId();
+            requestOrderURL =  zuul_inside_payment + "/api/v1/orderservice/order/" + info.getOrderId();
         } else {
-            requestOrderURL = "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + info.getOrderId();
+            requestOrderURL = zuul_inside_payment + "/api/v1/orderOtherService/orderOther/" + info.getOrderId();
         }
         HttpEntity requestGetOrderResults = new HttpEntity(headers);
         ResponseEntity<Response<Order>> reGetOrderResults = restTemplate.exchange(
@@ -98,7 +99,7 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
 
                 HttpEntity requestEntityOutsidePaySuccess = new HttpEntity(outsidePaymentInfo, headers);
                 ResponseEntity<Response> reOutsidePaySuccess = restTemplate.exchange(
-                        "http://ts-payment-service:19001/api/v1/paymentservice/payment",
+                        zuul_inside_payment + "/api/v1/paymentservice/payment",
                         HttpMethod.POST,
                         requestEntityOutsidePaySuccess,
                         Response.class);
@@ -277,7 +278,7 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
 
             HttpEntity requestEntityOutsidePaySuccess = new HttpEntity(outsidePaymentInfo, headers);
             ResponseEntity<Response> reOutsidePaySuccess = restTemplate.exchange(
-                    "http://ts-payment-service:19001/api/v1/paymentservice/payment",
+                    zuul_inside_payment + "/api/v1/paymentservice/payment",
                     HttpMethod.POST,
                     requestEntityOutsidePaySuccess,
                     Response.class);
@@ -316,7 +317,7 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
 
             HttpEntity requestEntityModifyOrderStatusResult = new HttpEntity(headers);
             ResponseEntity<Response> reModifyOrderStatusResult = restTemplate.exchange(
-                    "http://ts-order-service:12031/api/v1/orderservice/order/status/" + orderId + "/" + orderStatus,
+                    zuul_inside_payment + "/api/v1/orderservice/order/status/" + orderId + "/" + orderStatus,
                     HttpMethod.GET,
                     requestEntityModifyOrderStatusResult,
                     Response.class);
@@ -325,7 +326,7 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
         } else {
             HttpEntity requestEntityModifyOrderStatusResult = new HttpEntity(headers);
             ResponseEntity<Response> reModifyOrderStatusResult = restTemplate.exchange(
-                    "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/status/" + orderId + "/" + orderStatus,
+                    zuul_inside_payment + "/api/v1/orderOtherService/orderOther/status/" + orderId + "/" + orderStatus,
                     HttpMethod.GET,
                     requestEntityModifyOrderStatusResult,
                     Response.class);

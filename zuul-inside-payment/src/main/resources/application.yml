@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: zuul-inside-payment
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+server:
+  port: 30007
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  RibbonRoutingFilter:
+    route:
+      disable: true
+  routes:
+    zuul:
+      path: /zuulApi/**
+      service-id: zuul-inside-payment
+
+    inside-payment:
+      path: /api/v1/inside_pay_service/**
+      service-id: ts-inside-payment-service
+      strip-prefix: false
+
+    zuul-payment:
+      path: /api/v1/paymentservice/**
+      service-id: zuul-payment
+      strip-prefix: false
+
+    zuul-order:
+      path: /api/v1/orderservice/**
+      service-id: zuul-order
+      strip-prefix: false
+
+    zuul-order-other:
+      path: /api/v1/orderOtherService/**
+      service-id: zuul-order-other
+      strip-prefix: false
+

@@ -53,16 +53,22 @@
         <module>ts-common</module>
         <module>ts-auth-service</module>
 		<module>ts-user-service</module>
-		<module>ts-eureka-registry</module>
-		<module>ts-station2-service</module>
-		<module>ts-zuul-station</module>
+		<module>eureka-registry</module>
+		<module>zuul-train</module>
 		<module>test-zuul</module>
 		<module>test-resttemplate</module>
-		<module>ts-train2-service</module>
-		<module>ts-zuul-train</module>
-        <module>ts-price2-service</module>
-		<module>ts-zuul-price</module>
-		<!--<module>ts-ticket-advance-service</module>-->
+		<module>zuul-price</module>
+        <module>zuul-station</module>
+		<module>zuul-route</module>
+		<module>zuul-basic</module>
+		<module>zuul-payment</module>
+        <module>zuul-inside-payment</module>
+        <module>zuul-order</module>
+        <module>zuul-order-other</module>
+        <module>zuul-notification</module>
+        <module>zuul-user</module>
+        <module>zuul-cancel</module>
+        <!--<module>ts-ticket-advance-service</module>-->
 		<!--<module>1_services_analysis_mvn</module>-->
     </modules>
 
@@ -120,11 +126,6 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.31</version>
-		</dependency>
-		<dependency>
-			<groupId>ustb.scce</groupId>
-			<artifactId>zuul-link-trace-plugin</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
     </dependencies>
 

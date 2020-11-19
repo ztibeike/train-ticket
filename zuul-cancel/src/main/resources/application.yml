@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: zuul-cancel
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
+server:
+  port: 30012
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-demo:8030/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  RibbonRoutingFilter:
+    route:
+      disable: true
+  routes:
+    zuul:
+      path: /zuulApi/**
+      service-id: zuul-cancel
+
+    cancel:
+      path: /api/v1/cancelservice/**
+      service-id: ts-cancel-service
+      strip-prefix: false
+
+    zuul-notification:
+      path: /api/v1/notifyservice/**
+      service-id: zuul-notification
+      strip-prefix: false
+
+    zuul-order:
+      path: /api/v1/orderservice/**
+      service-id: zuul-order
+      strip-prefix: false
+
+    zuul-order-other:
+      path: /api/v1/orderOtherService/**
+      service-id: zuul-order-other
+      strip-prefix: false
+
+    zuul-inside-payment:
+      path: /api/v1/inside_pay_service/**
+      service-id: zuul-inside-payment
+      strip-prefix: false
+
+    zuul-user:
+      path: /api/v1/userservice/**
+      service-id: zuul-user
+      strip-prefix: false

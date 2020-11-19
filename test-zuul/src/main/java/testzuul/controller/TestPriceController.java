@@ -7,11 +7,11 @@ import testzuul.entity.Student;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/v1/priceservice")
+@RequestMapping("/api/v1/notifyservice")
 public class TestPriceController {
 
 
-    @GetMapping("/prices/hello")
+    @GetMapping("/test/hello")
     public String hello() {
         return "This is price service!";
     }

@@ -10,6 +10,7 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import ustb.scce.plugin.zuul.trace.config.EnableZuulTraceConfig;
 
 /**
  * @author fdse
@@ -20,6 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @IntegrationComponentScan
 @EnableSwagger2
 @EnableEurekaClient
+@EnableZuulTraceConfig
 public class PriceApplication {
 
     public static void main(String[] args) {
