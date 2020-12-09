@@ -28,7 +28,10 @@ public class BasicServiceImpl implements BasicService {
     private RestTemplate restTemplate;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicServiceImpl.class);
-    private final String zuul_basic = "http://zuul-basic";
+    private final String zuul_route = "http://zuul-route";
+    private final String zuul_train = "http://zuul-train";
+    private final String zuul_price = "http://zuul-price";
+    private final String zuul_station = "http://zuul-station";
 
     @Override
     public Response queryForTravel(Travel info, HttpHeaders headers) {
@@ -110,7 +113,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Station Id] Station Id: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_basic + "/api/v1/stationservice/stations/id/" + stationName,
+                zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -122,7 +125,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Check Station Exists] Station Name: {}", stationName);
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_basic + "/api/v1/stationservice/stations/id/" + stationName,
+                zuul_station + "/api/v1/stationservice/stations/id/" + stationName,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -136,7 +139,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query Train Type] Train Type: {}", trainTypeId);
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_basic + "/api/v1/trainservice/trains/" + trainTypeId,
+                zuul_train + "/api/v1/trainservice/trains/" + trainTypeId,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -149,7 +152,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Get Route By Id] Route ID：{}", routeId);
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_basic + "/api/v1/routeservice/routes/" + routeId,
+                zuul_route + "/api/v1/routeservice/routes/" + routeId,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -167,7 +170,7 @@ public class BasicServiceImpl implements BasicService {
         BasicServiceImpl.LOGGER.info("[Basic Information Service][Query For Price Config] RouteId: {} ,TrainType: {}", routeId, trainType);
         HttpEntity requestEntity = new HttpEntity(null, headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_basic + "/api/v1/priceservice/prices/" + routeId + "/" + trainType,
+                zuul_price + "/api/v1/priceservice/prices/" + routeId + "/" + trainType,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);

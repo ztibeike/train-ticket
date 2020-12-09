@@ -34,3 +34,8 @@ zuul:
       path: /api/v1/priceservice/**
       service-id: ts-price-service
       strip-prefix: false
+  sensitive-headers:
+
+ribbon:
+  ConnectionTimeout: 10000
+  ReadTimeout: 600000

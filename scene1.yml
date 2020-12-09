@@ -297,42 +297,6 @@ services:
     networks:
       - my-network
 
-  ts-payment-service-2:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12021:19001
-    networks:
-      - my-network
-
-  ts-payment-service-3:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12022:19001
-    networks:
-      - my-network
-
-  ts-payment-service-4:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12023:19001
-    networks:
-      - my-network
-
-  ts-payment-service-5:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12024:19001
-    networks:
-      - my-network
-
   zuul-inside-payment:
     build: zuul-inside-payment
     image: zuul-inside-payment
@@ -348,42 +312,6 @@ services:
     restart: always
     ports:
       - 18673:18673
-    networks:
-      - my-network
-
-  ts-inside-payment-service-2:
-    build: ts-inside-payment-service
-    image: ts-inside-payment-service
-    restart: always
-    ports:
-      - 12025:18673
-    networks:
-      - my-network
-
-  ts-inside-payment-service-3:
-    build: ts-inside-payment-service
-    image: ts-inside-payment-service
-    restart: always
-    ports:
-      - 12026:18673
-    networks:
-      - my-network
-
-  ts-inside-payment-service-4:
-    build: ts-inside-payment-service
-    image: ts-inside-payment-service
-    restart: always
-    ports:
-      - 12027:18673
-    networks:
-      - my-network
-
-  ts-inside-payment-service-5:
-    build: ts-inside-payment-service
-    image: ts-inside-payment-service
-    restart: always
-    ports:
-      - 12028:18673
     networks:
       - my-network
 
@@ -405,42 +333,6 @@ services:
     networks:
       - my-network
 
-  ts-order-service-2:
-    build: ts-order-service
-    image: ts-order-service
-    restart: always
-    ports:
-      - 12033:12031
-    networks:
-      - my-network
-
-  ts-order-service-3:
-    build: ts-order-service
-    image: ts-order-service
-    restart: always
-    ports:
-      - 12034:12031
-    networks:
-      - my-network
-
-  ts-order-service-4:
-    build: ts-order-service
-    image: ts-order-service
-    restart: always
-    ports:
-      - 12035:12031
-    networks:
-      - my-network
-
-  ts-order-service-5:
-    build: ts-order-service
-    image: ts-order-service
-    restart: always
-    ports:
-      - 12036:12031
-    networks:
-      - my-network
-
   zuul-order-other:
     build: zuul-order-other
     image: zuul-order-other
@@ -459,41 +351,6 @@ services:
     networks:
       - my-network
 
-  ts-order-other-service-2:
-    build: ts-order-other-service
-    image: ts-order-other-service
-    restart: always
-    ports:
-      - 12037:12032
-    networks:
-      - my-network
-
-  ts-order-other-service-3:
-    build: ts-order-other-service
-    image: ts-order-other-service
-    restart: always
-    ports:
-      - 12038:12032
-    networks:
-      - my-network
-
-  ts-order-other-service-4:
-    build: ts-order-other-service
-    image: ts-order-other-service
-    restart: always
-    ports:
-      - 12039:12032
-    networks:
-      - my-network
-
-  ts-order-other-service-5:
-    build: ts-order-other-service
-    image: ts-order-other-service
-    restart: always
-    ports:
-      - 12040:12032
-    networks:
-      - my-network
 
   zuul-notification:
     build: zuul-notification
@@ -513,41 +370,6 @@ services:
     networks:
       - my-network
 
-  ts-notification-service-2:
-    build: ts-notification-service
-    image: ts-notification-service
-    restart: always
-    ports:
-      - 12041:17853
-    networks:
-      - my-network
-
-  ts-notification-service-3:
-    build: ts-notification-service
-    image: ts-notification-service
-    restart: always
-    ports:
-      - 12042:17853
-    networks:
-      - my-network
-
-  ts-notification-service-4:
-    build: ts-notification-service
-    image: ts-notification-service
-    restart: always
-    ports:
-      - 12043:17853
-    networks:
-      - my-network
-
-  ts-notification-service-5:
-    build: ts-notification-service
-    image: ts-notification-service
-    restart: always
-    ports:
-      - 12044:17853
-    networks:
-      - my-network
 
   zuul-user:
     build: zuul-user
@@ -567,41 +389,6 @@ services:
     networks:
       - my-network
 
-  ts-user-service-2:
-    build: ts-user-service
-    image: ts-user-service
-    restart: always
-    ports:
-      - 12045:12342
-    networks:
-      - my-network
-
-  ts-user-service-3:
-    build: ts-user-service
-    image: ts-user-service
-    restart: always
-    ports:
-      - 12046:12342
-    networks:
-      - my-network
-
-  ts-user-service-4:
-    build: ts-user-service
-    image: ts-user-service
-    restart: always
-    ports:
-      - 12047:12342
-    networks:
-      - my-network
-
-  ts-user-service-5:
-    build: ts-user-service
-    image: ts-user-service
-    restart: always
-    ports:
-      - 12048:12342
-    networks:
-      - my-network
 
   zuul-cancel:
     build: zuul-cancel
@@ -618,42 +405,6 @@ services:
     restart: always
     ports:
       - 18885:18885
-    networks:
-      - my-network
-
-  ts-cancel-service-2:
-    build: ts-cancel-service
-    image: ts-cancel-service
-    restart: always
-    ports:
-      - 12049:18885
-    networks:
-      - my-network
-
-  ts-cancel-service-3:
-    build: ts-cancel-service
-    image: ts-cancel-service
-    restart: always
-    ports:
-      - 12050:18885
-    networks:
-      - my-network
-
-  ts-cancel-service-4:
-    build: ts-cancel-service
-    image: ts-cancel-service
-    restart: always
-    ports:
-      - 12051:18885
-    networks:
-      - my-network
-
-  ts-cancel-service-5:
-    build: ts-cancel-service
-    image: ts-cancel-service
-    restart: always
-    ports:
-      - 12052:18885
     networks:
       - my-network
 

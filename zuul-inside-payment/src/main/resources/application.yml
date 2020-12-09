@@ -35,18 +35,8 @@ zuul:
       service-id: ts-inside-payment-service
       strip-prefix: false
 
-    zuul-payment:
-      path: /api/v1/paymentservice/**
-      service-id: zuul-payment
-      strip-prefix: false
+  sensitive-headers:
 
-    zuul-order:
-      path: /api/v1/orderservice/**
-      service-id: zuul-order
-      strip-prefix: false
-
-    zuul-order-other:
-      path: /api/v1/orderOtherService/**
-      service-id: zuul-order-other
-      strip-prefix: false
-
+ribbon:
+  ConnectionTimeout: 10000
+  ReadTimeout: 600000

@@ -6,10 +6,10 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@EnableCaching
 @EnableEurekaClient
 @EnableZuulProxy
 @SpringBootApplication
+@EnableCaching
 public class ZuulBasicApplication {
 
     public static void main(String[] args) {

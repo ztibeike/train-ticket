@@ -34,3 +34,8 @@ zuul:
       path: /api/v1/userservice/**
       service-id: ts-user-service
       strip-prefix: false
+  sensitive-headers:
+
+ribbon:
+  ConnectionTimeout: 10000
+  ReadTimeout: 600000

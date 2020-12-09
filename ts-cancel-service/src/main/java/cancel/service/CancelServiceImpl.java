@@ -27,7 +27,11 @@ public class CancelServiceImpl implements CancelService {
     private RestTemplate restTemplate;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CancelServiceImpl.class);
-    private final String zuul_cancel = "http://zuul-cancel";
+    private final String zuul_notification = "http://zuul-notification";
+    private final String zuul_order = "http://zuul-order";
+    private final String zuul_order_other = "http://zuul-order-other";
+    private final String zuul_inside_payment = "http://zuul-inside-payment";
+    private final String zuul_user = "http://zuul-user";
 
     String orderStatusCancelNotPermitted = "Order Status Cancel Not Permitted";
 
@@ -132,7 +136,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Send Email]");
         HttpEntity requestEntity = new HttpEntity(notifyInfo, headers);
         ResponseEntity<Boolean> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/notifyservice/notification/order_cancel_success",
+                zuul_notification + "/api/v1/notifyservice/notification/order_cancel_success",
                 HttpMethod.POST,
                 requestEntity,
                 Boolean.class);
@@ -226,7 +230,7 @@ public class CancelServiceImpl implements CancelService {
 
         HttpEntity requestEntity = new HttpEntity(order, headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/orderservice/order",
+                zuul_order + "/api/v1/orderservice/order",
                 HttpMethod.PUT,
                 requestEntity,
                 Response.class);
@@ -238,7 +242,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Change Order Status] Changing....");
         HttpEntity requestEntity = new HttpEntity(info, headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/orderOtherService/orderOther",
+                zuul_order_other + "/api/v1/orderOtherService/orderOther",
                 HttpMethod.PUT,
                 requestEntity,
                 Response.class);
@@ -251,7 +255,7 @@ public class CancelServiceImpl implements CancelService {
 
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/inside_pay_service/inside_payment/drawback/" + userId + "/" + money,
+                zuul_inside_payment + "/api/v1/inside_pay_service/inside_payment/drawback/" + userId + "/" + money,
                 HttpMethod.GET,
                 requestEntity,
                 Response.class);
@@ -264,7 +268,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get By Id]");
         HttpEntity requestEntity = new HttpEntity( headers);
         ResponseEntity<Response<User>> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/userservice/users/id/" + orderId,
+                zuul_user + "/api/v1/userservice/users/id/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<User>>() {
@@ -276,7 +280,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get Order] Getting....");
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response<Order>> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/orderservice/order/" + orderId,
+                zuul_order + "/api/v1/orderservice/order/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<Order>>() {
@@ -288,7 +292,7 @@ public class CancelServiceImpl implements CancelService {
         CancelServiceImpl.LOGGER.info("[Cancel Order Service][Get Order] Getting....");
         HttpEntity requestEntity = new HttpEntity(  headers);
         ResponseEntity<Response<Order>> re = restTemplate.exchange(
-                zuul_cancel + "/api/v1/orderOtherService/orderOther/" + orderId,
+                zuul_order_other + "/api/v1/orderOtherService/orderOther/" + orderId,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<Order>>() {

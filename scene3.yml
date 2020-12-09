@@ -27,42 +27,6 @@ services:
     networks:
       - my-network
 
-  ts-station-service-2:
-    build: ts-station-service
-    image: ts-station-service
-    restart: always
-    ports:
-      - 12001:12345
-    networks:
-      - my-network
-
-  ts-station-service-3:
-    build: ts-station-service
-    image: ts-station-service
-    restart: always
-    ports:
-      - 12002:12345
-    networks:
-      - my-network
-
-  ts-station-service-4:
-    build: ts-station-service
-    image: ts-station-service
-    restart: always
-    ports:
-      - 12003:12345
-    networks:
-      - my-network
-
-  ts-station-service-5:
-    build: ts-station-service
-    image: ts-station-service
-    restart: always
-    ports:
-      - 12004:12345
-    networks:
-      - my-network
-
   zuul-train:
     build: zuul-train
     image: zuul-train
@@ -81,41 +45,6 @@ services:
     networks:
       - my-network
 
-  ts-train-service-2:
-    build: ts-train-service
-    image: ts-train-service
-    restart: always
-    ports:
-      - 12005:14567
-    networks:
-      - my-network
-
-  ts-train-service-3:
-    build: ts-train-service
-    image: ts-train-service
-    restart: always
-    ports:
-      - 12006:14567
-    networks:
-      - my-network
-
-  ts-train-service-4:
-    build: ts-train-service
-    image: ts-train-service
-    restart: always
-    ports:
-      - 12007:14567
-    networks:
-      - my-network
-
-  ts-train-service-5:
-    build: ts-train-service
-    image: ts-train-service
-    restart: always
-    ports:
-      - 12008:14567
-    networks:
-      - my-network
 
   zuul-price:
     build: zuul-price
@@ -135,41 +64,6 @@ services:
     networks:
       - my-network
 
-  ts-price-service-2:
-    build: ts-price-service
-    image: ts-price-service
-    restart: always
-    ports:
-      - 12009:16579
-    networks:
-      - my-network
-
-  ts-price-service-3:
-    build: ts-price-service
-    image: ts-price-service
-    restart: always
-    ports:
-      - 12010:16579
-    networks:
-      - my-network
-
-  ts-price-service-4:
-    build: ts-price-service
-    image: ts-price-service
-    restart: always
-    ports:
-      - 12011:16579
-    networks:
-      - my-network
-
-  ts-price-service-5:
-    build: ts-price-service
-    image: ts-price-service
-    restart: always
-    ports:
-      - 12012:16579
-    networks:
-      - my-network
 
   zuul-route:
     build: zuul-route
@@ -186,42 +80,6 @@ services:
     restart: always
     ports:
       - 11178:11178
-    networks:
-      - my-network
-
-  ts-route-service-2:
-    build: ts-route-service
-    image: ts-route-service
-    restart: always
-    ports:
-      - 12013:11178
-    networks:
-      - my-network
-
-  ts-route-service-3:
-    build: ts-route-service
-    image: ts-route-service
-    restart: always
-    ports:
-      - 12014:11178
-    networks:
-      - my-network
-
-  ts-route-service-4:
-    build: ts-route-service
-    image: ts-route-service
-    restart: always
-    ports:
-      - 12015:11178
-    networks:
-      - my-network
-
-  ts-route-service-5:
-    build: ts-route-service
-    image: ts-route-service
-    restart: always
-    ports:
-      - 12016:11178
     networks:
       - my-network
 
@@ -243,42 +101,6 @@ services:
     networks:
       - my-network
 
-  ts-basic-service-2:
-    build: ts-basic-service
-    image: ts-basic-service
-    restart: always
-    ports:
-      - 12017:15680
-    networks:
-      - my-network
-
-  ts-basic-service-3:
-    build: ts-basic-service
-    image: ts-basic-service
-    restart: always
-    ports:
-      - 12018:15680
-    networks:
-      - my-network
-
-  ts-basic-service-4:
-    build: ts-basic-service
-    image: ts-basic-service
-    restart: always
-    ports:
-      - 12019:15680
-    networks:
-      - my-network
-
-  ts-basic-service-5:
-    build: ts-basic-service
-    image: ts-basic-service
-    restart: always
-    ports:
-      - 12020:15680
-    networks:
-      - my-network
-
   zuul-payment:
     build: zuul-payment
     image: zuul-payment
@@ -297,41 +119,6 @@ services:
     networks:
       - my-network
 
-  ts-payment-service-2:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12021:19001
-    networks:
-      - my-network
-
-  ts-payment-service-3:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12022:19001
-    networks:
-      - my-network
-
-  ts-payment-service-4:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12023:19001
-    networks:
-      - my-network
-
-  ts-payment-service-5:
-    build: ts-payment-service
-    image: ts-payment-service
-    restart: always
-    ports:
-      - 12024:19001
-    networks:
-      - my-network
 
   zuul-inside-payment:
     build: zuul-inside-payment

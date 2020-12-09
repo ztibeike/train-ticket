@@ -34,23 +34,8 @@ zuul:
       path: /api/v1/basicservice/**
       service-id: ts-basic-service
       strip-prefix: false
+  sensitive-headers:
 
-    zuul-route:
-      path: /api/v1/routeservice/**
-      service-id: zuul-route
-      strip-prefix: false
-
-    zuul-train:
-      path: /api/v1/trainservice/**
-      service-id: zuul-train
-      strip-prefix: false
-
-    zuul-price:
-      path: /api/v1/priceservice/**
-      service-id: zuul-price
-      strip-prefix: false
-
-    zuul-station:
-      path: /api/v1/stationservice/**
-      service-id: zuul-station
-      strip-prefix: false
+ribbon:
+  ConnectionTimeout: 10000
+  ReadTimeout: 600000
