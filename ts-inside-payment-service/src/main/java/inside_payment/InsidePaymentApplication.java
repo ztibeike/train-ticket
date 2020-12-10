@@ -11,7 +11,6 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import ustb.scce.plugin.zuul.trace.config.EnableZuulTraceConfig;
 
 /**
  * @author fdse
@@ -22,7 +21,6 @@ import ustb.scce.plugin.zuul.trace.config.EnableZuulTraceConfig;
 @IntegrationComponentScan
 @EnableSwagger2
 @EnableEurekaClient
-@EnableZuulTraceConfig
 public class InsidePaymentApplication {
 
     public static void main(String[] args) {
