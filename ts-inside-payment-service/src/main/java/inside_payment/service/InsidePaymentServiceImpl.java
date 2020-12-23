@@ -36,6 +36,65 @@ public class InsidePaymentServiceImpl implements InsidePaymentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(InsidePaymentServiceImpl.class);
 
     @Override
+    public Response rollBackPay(PaymentInfo info, HttpHeaders headers) {
+        String userId = info.getUserId();
+
+        // 判断是order还是orderOther
+        String requestOrderURL = "";
+        if (info.getTripId().startsWith("G") || info.getTripId().startsWith("D")) {
+            requestOrderURL =  "http://ts-order-service:12031/api/v1/orderservice/order/";
+        } else {
+            requestOrderURL = "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/";
+        }
+        //查询Order信息
+        HttpEntity requestGetOrderResults = new HttpEntity(headers);
+        ResponseEntity<Response<Order>> reGetOrderResults = restTemplate.exchange(
+                requestOrderURL + info.getOrderId(),
+                HttpMethod.GET,
+                requestGetOrderResults,
+                new ParameterizedTypeReference<Response<Order>>() {
+                });
+        Response<Order> result = reGetOrderResults.getBody();
+        // 1-存在该order, 0-不存在该order
+        if (result.getStatus() == 1) {
+            InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order found G|H");
+            Order order = result.getData();
+            if (OrderStatus.PAID.getCode() != order.getStatus()) {
+                InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order is Not Paid, No Need to Roll Back");
+                return new Response<>(0, "Order is Not Paid, No Need to Roll Back", null);
+            }
+            //修改order状态为未支付
+            order.setStatus(OrderStatus.NOTPAID.getCode());
+            HttpEntity requestEntity = new HttpEntity(order, headers);
+            ResponseEntity<Response> re = restTemplate.exchange(
+                    requestOrderURL + "order",
+                    HttpMethod.PUT,
+                    requestEntity,
+                    Response.class);
+            InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order Status Change Success");
+            //退钱
+            String money = order.getPrice();
+            requestEntity = new HttpEntity(headers);
+            ResponseEntity<Response> re2 = restTemplate.exchange(
+                    "http://ts-inside-payment-service:18673/api/v1/inside_pay_service/inside_payment/drawback/" + userId + "/" + money,
+                    HttpMethod.GET,
+                    requestEntity,
+                    Response.class);
+            // 退钱成功
+            if (re2.getBody().getStatus() == 1) {
+                InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order Roll Back Success");
+                return new Response<>(1, "Order Roll Back Success", null);
+            } else {
+                InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order Money Drawback Fail");
+                return new Response<>(1, "Order Money Drawback Fail", null);
+            }
+        } else {
+            InsidePaymentServiceImpl.LOGGER.info("[Inside Payment Service][RollBackPay] Order Not Found");
+            return new Response<>(0, "Order Not Found", null);
+        }
+    }
+
+    @Override
     public Response pay(PaymentInfo info, HttpHeaders headers) {
 
         String userId = info.getUserId();

@@ -35,8 +35,9 @@ public class InsidePaymentController {
         return "Welcome to [ InsidePayment Service ] !";
     }
 
+    // 降级函数-rollBackPay
     @PostMapping(value = "/inside_payment")
-    @HystrixCommand
+    @HystrixCommand(fallbackMethod = "rollBackPay")
     public HttpEntity pay(@RequestBody PaymentInfo info, @RequestHeader HttpHeaders headers) {
         InsidePaymentController.LOGGER.info("[Inside Payment Service][Pay] Pay for: {}", info.getOrderId());
         return ok(service.pay(info, headers));
@@ -82,5 +83,11 @@ public class InsidePaymentController {
 
     private HttpEntity fallback() {
         return ok(new Response<>());
+    }
+
+    //多级降级，如果该方法执行失败则降级至fallback函数
+    @HystrixCommand
+    private HttpEntity rollBackPay(PaymentInfo info, HttpHeaders headers) {
+        return ok(service.rollBackPay(info, headers));
     }
 }

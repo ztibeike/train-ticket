@@ -91,4 +91,13 @@ public interface InsidePaymentService {
      */
     void initPayment(Payment payment, HttpHeaders headers);
 
+    /**
+     *
+     * roll back the status of order and drawback money for hystrix fallback
+     *
+     * @param info
+     * @param headers
+     */
+    Response rollBackPay(PaymentInfo info, HttpHeaders headers);
+
 }
