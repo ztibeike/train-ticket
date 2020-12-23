@@ -72,6 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, stations).hasAnyRole(admin)
                 .antMatchers(HttpMethod.PUT, stations).hasAnyRole(admin)
                 .antMatchers(HttpMethod.DELETE, stations).hasAnyRole(admin)
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/info").permitAll()
                 .antMatchers("/api/v1/stationservice/**").permitAll()
                 .antMatchers("/swagger-ui.html", "/webjars/**", "/images/**",
                         "/configuration/**", "/swagger-resources/**", "/v2/**").permitAll()
